@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPA Hisoblovchi</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- SheetJS kutubxonasini qo‘shish -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+</head>
+<body>
+  <h1 class="gpaclass">GPA HISOBLOVCHI PLATFORMASI</h1>
+ 
+ 
+
+  <div class="wert1">
+    <form id="subjectForm">
+        <input type="text" id="subjectName" placeholder="Fanni nomini kiriting" required />
+        <input type="number" id="credit" placeholder="Kredit sonini kiriting" required />
+        <input type="number" id="grade" placeholder="Bahoni (0, 3, 4, 5) kiriting" min="0" max="5" required />
+        <select id="semester" required>
+          <option value="">Semestrni tanlang</option>
+          <option value="1">1-semestr</option>
+          <option value="2">2-semestr</option>
+          <option value="3">3-semestr</option>
+          <option value="4">4-semestr</option>
+          <option value="5">5-semestr</option>
+          <option value="6">6-semestr</option>
+          <option value="7">7-semestr</option>
+          <option value="8">8-semestr</option>
+          <option value="9">9-semestr</option>
+          <option value="10">10-semestr</option>
+        </select>
+        <button type="submit">Fan qo‘shish</button>
+      </form>
+
+      <div class="block2">
+        <h1>
+        * Bu dastur quyidagi shartda ishlaydi:
+        </h1>
+        <h3>
+            1. Fanning nomi kiritiladi; </br>
+            2. Fanning kredit miqdori kiritiladi;  </br>
+            3. Fanning bahosi kiritiladi;  </br> 
+            4. Fanning semestri tanlanadi;  </br>
+          </h3>
+      </div>
+
+
+     
+  </div>
+  
+
+  <h1>Qo‘shilgan fanlar:</h1>
+  <table id="subjectTable">
+    <thead>
+      <tr>
+        <th>Fan Nomi</th>
+        <th>Kredit</th>
+        <th>Baho</th>
+        <th>Semestr</th>
+        <th>O‘chirish</th>
+      </tr>
+    </thead>
+    <tbody id="subjectList"></tbody>
+  </table>
+
+  <button onclick="calculateGPA()">GPA ni hisoblash</button>
+  <h2 id="result"></h2>
+
+  <button onclick="downloadXLSX()">Ma'lumotlarni XLSX formatida yuklash</button>
+  <button onclick="clearData()">Tozalash</button>
+
+  <script src="script.js"></script>
+  <!-- ... boshqa HTML kodlar ... -->
+<h3>
+    <footer>
+        <p>Savol va takliflar uchun telegram orqali bog'laning: 
+          <a href="https://t.me/Okhunjon_Orifov" target="_blank">@Okhunjon_Orifov</a>
+        </p>
+      </footer>
+</h3>
+    </body>
+  </html>
+  </body>
+</html>
