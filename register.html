@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ro‘yxatdan o‘tish</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 class="gpaclass">Ro‘yxatdan o‘tish</h1>
+  <form id="registerForm">
+    <input type="text" id="regLogin" placeholder="Login tanlang" required />
+    <input type="password" id="regPassword" placeholder="Parol tanlang" required />
+    <button type="submit">Saqlash</button>
+  </form>
+  <p>Allaqachon ro‘yxatdan o‘tganmisiz? <a href="index.html">Tizimga kiring</a></p>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const login = document.getElementById("regLogin").value.trim();
+      const password = document.getElementById("regPassword").value.trim();
+
+      if (!login || !password) {
+        alert("Iltimos, login va parol kiriting!");
+        return;
+      }
+
+      localStorage.setItem("userLogin", login);
+      localStorage.setItem("userPassword", password);
+      alert("Ro‘yxatdan o‘tildi! Endi tizimga kiring.");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

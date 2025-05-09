@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diplom ballari</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="gpaclass">Diplom ballari hisoblash</h1>
+  <form id="diplomForm">
+    <input type="text" id="diplomSubject" placeholder="Fan nomi" required />
+    <input type="number" id="diplomCredit" placeholder="Kredit" required />
+    <input type="number" id="diplomGrade" placeholder="Bahosi (0-5)" min="0" max="5" required />
+    <button type="submit">Fan qo‘shish</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Fan nomi</th>
+        <th>Kredit</th>
+        <th>Baho</th>
+      </tr>
+    </thead>
+    <tbody id="diplomList"></tbody>
+  </table>
+  <button onclick="calculateDiplomGPA()">Diplom ballarni hisoblash</button>
+  <h2 id="diplomResult"></h2>
+  <script src="diplom.js"></script>
+</body>
+</html>

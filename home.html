@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bosh sahifa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 class="gpaclass">Platformaga xush kelibsiz!</h1>
+  <div class="menu-buttons">
+    <button onclick="location.href='gpa.html'">GPA</button>
+    <button onclick="location.href='diplom.html'">Diplom ballari</button>
+    
+  </div>
+  <br> <br> <br>
+    <div>
+    <button onclick="logout()">Tizimdan chiqish</button>
+  </div>
+  <script>
+    function logout() {
+      localStorage.removeItem("userLogin");
+      localStorage.removeItem("userPassword");
+      alert("Tizimdan chiqdingiz.");
+      window.location.href = "index.html";
+    }
+  </script>
+  
+
+  <footer>
+    <p>Savol va takliflar uchun telegram orqali bog'laning: 
+      <a href="https://t.me/Okhunjon_Orifov" target="_blank">@Okhunjon_Orifov</a>
+    </p>
+  </footer>
+</body>
+</html>

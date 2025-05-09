@@ -6,10 +6,9 @@ const subjectTable = document.getElementById('subjectTable');
 let subjects = JSON.parse(localStorage.getItem('subjects')) || [];
 
 function renderSubjects() {
-  subjectList.innerHTML = ''; // Ro‘yxatni tozalash
+  subjectList.innerHTML = '';
   subjects.forEach((subject, index) => {
     const tr = document.createElement('tr');
-    
     tr.innerHTML = `
       <td>${subject.name}</td>
       <td>${subject.credit}</td>
@@ -17,20 +16,18 @@ function renderSubjects() {
       <td>${subject.semester}</td>
       <td><button onclick="deleteSubject(${index})">O‘chirish</button></td>
     `;
-    
     subjectList.appendChild(tr);
   });
 }
 
 function deleteSubject(index) {
-  subjects.splice(index, 1); // O‘chirilgan elementni ro‘yxatdan olib tashlash
-  localStorage.setItem('subjects', JSON.stringify(subjects)); // Yangilangan ro‘yxatni localStorage-ga saqlash
-  renderSubjects(); // Ro‘yxatni qayta chizish
+  subjects.splice(index, 1);
+  localStorage.setItem('subjects', JSON.stringify(subjects));
+  renderSubjects();
 }
 
 subjectForm.addEventListener('submit', function (e) {
   e.preventDefault();
-
   const name = document.getElementById('subjectName').value;
   const credit = parseFloat(document.getElementById('credit').value);
   const grade = parseFloat(document.getElementById('grade').value);
@@ -43,11 +40,9 @@ subjectForm.addEventListener('submit', function (e) {
 
   const subject = { name, credit, grade, semester };
   subjects.push(subject);
-
-  localStorage.setItem('subjects', JSON.stringify(subjects)); // Ma’lumotlarni saqlash
-  renderSubjects(); // Ro‘yxatni yangilash
-
-  subjectForm.reset(); // Formani tozalash
+  localStorage.setItem('subjects', JSON.stringify(subjects));
+  renderSubjects();
+  subjectForm.reset();
 });
 
 function calculateGPA() {
@@ -58,7 +53,6 @@ function calculateGPA() {
 
   let totalCredits = 0;
   let weightedSum = 0;
-
   subjects.forEach(subject => {
     totalCredits += subject.credit;
     weightedSum += subject.credit * subject.grade;
@@ -69,7 +63,7 @@ function calculateGPA() {
 }
 
 function downloadXLSX() {
-  let wb = XLSX.utils.book_new();  // Yangi kitob (workbook) yaratish
+  let wb = XLSX.utils.book_new();
   wb.Props = {
     Title: "GPA Hisoblovchi",
     Subject: "Fanlar va baholar",
@@ -77,27 +71,21 @@ function downloadXLSX() {
     CreatedDate: new Date()
   };
 
-  // Jadvalni XSLX formatida yaratish
-  let ws_data = [["Fan Nomi", "Kredit", "Baho", "Semestr"]]; // Sarlavhalar
-
+  let ws_data = [["Fan Nomi", "Kredit", "Baho", "Semestr"]];
   subjects.forEach(subject => {
-    ws_data.push([subject.name, subject.credit, subject.grade, subject.semester]);  // Ma'lumotlar
+    ws_data.push([subject.name, subject.credit, subject.grade, subject.semester]);
   });
 
-  let ws = XLSX.utils.aoa_to_sheet(ws_data); // Array to sheet
-  XLSX.utils.book_append_sheet(wb, ws, "Fanlar"); // Sheetga qo'shish
-
-  // Faylni yuklab olish
+  let ws = XLSX.utils.aoa_to_sheet(ws_data);
+  XLSX.utils.book_append_sheet(wb, ws, "Fanlar");
   XLSX.writeFile(wb, "GPA_data.xlsx");
 }
 
-// Tozalash funksiyasi
 function clearData() {
-  subjects = []; // Ro‘yxatni tozalash
-  localStorage.removeItem('subjects'); // localStorage'dan ma'lumotlarni o‘chirish
-  renderSubjects(); // Ro‘yxatni qayta chizish
-  result.textContent = ''; // GPA natijasini tozalash
+  subjects = [];
+  localStorage.removeItem('subjects');
+  renderSubjects();
+  result.textContent = '';
 }
 
-// Sahifa yuklanganda ro‘yxatni qayta yuklash
 renderSubjects();
